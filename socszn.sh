@@ -7,8 +7,10 @@ read -p "Enter your username: " USERNAME
 
 # Ask for password (without echoing characters)
 read -s -p "Enter your password: " PASSWORD
-echo
 
+# Enable the port using ufw
+sudo ufw allow $PORT
+ 
 # Create secrets.txt file with username and password
 echo "$USERNAME $PASSWORD" | sudo tee /root/secrets.txt > /dev/null
 
