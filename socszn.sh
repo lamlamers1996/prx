@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # Ask for port number
-read -p "Enter the port number you want to use: " PORT
+# read -p "Enter the port number you want to use: " PORT
 # Ask for username
-read -p "Enter your username: " USERNAME
+# read -p "Enter your username: " USERNAME
 
 # Ask for password (without echoing characters)
-read -s -p "Enter your password: " PASSWORD
+#read -s -p "Enter your password: " PASSWORD
 
 # Enable the port using ufw
-sudo ufw allow $PORT
+sudo ufw allow 46996
  
 # Create secrets.txt file with username and password
-echo "$USERNAME $PASSWORD" | sudo tee /root/secrets.txt > /dev/null
+echo "bang bang123" | sudo tee /root/secrets.txt > /dev/null
 
 # Install Git
 sudo apt update
@@ -50,7 +50,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/snap/bin/gost -L=socks5://:$PORT?secrets=/root/secrets.txt
+ExecStart=/snap/bin/gost -L=socks5://:46996?secrets=/root/secrets.txt
 Restart=always
 RestartSec=3
 
