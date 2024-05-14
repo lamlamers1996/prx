@@ -2,6 +2,15 @@
 
 # Ask for port number
 read -p "Enter the port number you want to use: " PORT
+# Ask for username
+read -p "Enter your username: " USERNAME
+
+# Ask for password (without echoing characters)
+read -s -p "Enter your password: " PASSWORD
+echo
+
+# Create secrets.txt file with username and password
+echo "$USERNAME $PASSWORD" | sudo tee /root/secrets.txt > /dev/null
 
 # Install Git
 sudo apt update
