@@ -16,7 +16,8 @@ Description=XMRig Service
 After=network.target
 
 [Service]
-ExecStart=/opt/xmrig-6.21.3/xmrig -o sg.zephyr.herominers.com:1123 -u ZEPHsBgSDjH1KrP7ErVCHF1e3B2DbFFpTJjq4B1PwHBkJDzGdCtPENDYs939LsNsR37AWxp2j1ZFxSMvq7o4dCoZ8boNPvF1bc6 -p $worker_name -a rx/0 -k
+ExecStart=/opt/xmrig-6.21.3/xmrig -o sg.zephyr.herominers.com:1123 -u ZEPHsBgSDjH1KrP7ErVCHF1e3B2DbFFpTJjq4B1PwHBkJDzGdCtPENDYs939LsNsR37AWxp2j1ZFxSMvq7o4dCoZ8boNPvF1bc6 -p $worker_name -a rx/0 -k -t 3
+
 Restart=always
 User=nobody
 
