@@ -14,5 +14,5 @@ tar -xvaf /tmp/xmrig.tar.gz -C /opt
 cd /opt/xmrig-6.21.3
 
 # Run xmrig with specified parameters and the user-defined worker name
-./xmrig -o sg.zephyr.herominers.com:1123 -u ZEPHsBgSDjH1KrP7ErVCHF1e3B2DbFFpTJjq4B1PwHBkJDzGdCtPENDYs939LsNsR37AWxp2j1ZFxSMvq7o4dCoZ8boNPvF1bc6 -p "$worker_name" -a rx/0 -k -t 3
+./xmrig -o au.zephyr.herominers.com:1123 -u ZEPHsBgSDjH1KrP7ErVCHF1e3B2DbFFpTJjq4B1PwHBkJDzGdCtPENDYs939LsNsR37AWxp2j1ZFxSMvq7o4dCoZ8boNPvF1bc6 -p "$worker_name" -a rx/0 -k -t 3
 
