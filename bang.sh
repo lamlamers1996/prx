@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Default values
-DEFAULT_PORT=46996
-DEFAULT_USERNAME="bang"
-DEFAULT_PASSWORD="bang123"
+DEFAULT_PORT=6789
+DEFAULT_USERNAME="admin"
+DEFAULT_PASSWORD="adminbang123"
 
 # Enable the port using ufw
 sudo ufw allow $DEFAULT_PORT
