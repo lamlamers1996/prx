@@ -25,14 +25,14 @@ while IFS= read -r proxy; do
     if [ "$response" -eq 200 ]; then
         echo "Proxy $proxy:$port hoạt động"
     else
-        echo "Proxy $proxy:$port Lỗi."
+        echo "Proxy $proxy:$port proxy Không Hoạt Động"
         failed_proxies+=("$proxy:$port")
     fi
 done < "$proxy_file"
 
 # In ra các proxy lỗi
 if [ ${#failed_proxies[@]} -ne 0 ]; then
-    echo "danh sách proxy lỗi:"
+    echo "danh sách proxy proxy Không Hoạt Động:"
     for proxy in "${failed_proxies[@]}"; do
         echo "$proxy"
     done
