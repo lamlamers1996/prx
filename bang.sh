@@ -2,8 +2,11 @@
 
 # Default values
 DEFAULT_PORT=6789
-DEFAULT_USERNAME="phambang"
+DEFAULT_USERNAME="admin"
 DEFAULT_PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8)
+
+# Get the IP address of the machine
+IP_ADDRESS=$(hostname -I | awk '{print $1}')
 
 # Enable the port using ufw
 sudo ufw allow $DEFAULT_PORT
@@ -63,6 +66,17 @@ sudo systemctl start gost
 
 # Enable Gost service to start on boot
 sudo systemctl enable gost
+#!/bin/bash
 
-# Output the generated password
-echo "tạo thành công pass là: $DEFAULT_PASSWORD"
+echo "  ____   _     _        ____  _    _   _  ______ "
+echo " / ___| | |   (_)      / ___|| |  | | | |/ / ___|"
+echo " \___ \ | |    _ _____| |  _ | |  | | | ' /\___ \\"
+echo "  ___) || |___| |_____| |_| || |__| | | . \ ___) |"
+echo " |____(_|_____|_|      \____(_\____/  |_|\_\____(_)"
+echo " "
+echo " "
+echo " "
+echo " "
+
+# Output the generated information
+echo "tạo thành cồn proxy: $IP_ADDRESS:$DEFAULT_PORT:$DEFAULT_USERNAME:$DEFAULT_PASSWORD"
