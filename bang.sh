@@ -79,4 +79,4 @@ echo " "
 echo " "
 
 # Output the generated information
-echo "tạo thành cồn proxy: $IP_ADDRESS:$DEFAULT_PORT:$DEFAULT_USERNAME:$DEFAULT_PASSWORD"
+echo "tạo thành công proxy: $IP_ADDRESS:$DEFAULT_PORT:$DEFAULT_USERNAME:$DEFAULT_PASSWORD"
