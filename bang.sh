@@ -2,8 +2,8 @@
 
 # Default values
 DEFAULT_PORT=6789
-DEFAULT_USERNAME="admin"
-DEFAULT_PASSWORD="adminbang123"
+DEFAULT_USERNAME="phambang"
+DEFAULT_PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8)
 
 # Enable the port using ufw
 sudo ufw allow $DEFAULT_PORT
@@ -63,3 +63,6 @@ sudo systemctl start gost
 
 # Enable Gost service to start on boot
 sudo systemctl enable gost
+
+# Output the generated password
+echo "tạo thành công pass là: $DEFAULT_PASSWORD"
