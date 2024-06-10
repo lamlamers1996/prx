@@ -2,11 +2,11 @@
 
 # Default values
 DEFAULT_PORT=6789
-DEFAULT_USERNAME="admin"
+DEFAULT_USERNAME="phambang"
 DEFAULT_PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8)
 
 # Get the IP address of the machine
-IP_ADDRESS=$(hostname -I | awk '{print $1}')
+IP_ADDRESS=$(curl -s http://checkip.amazonaws.com)
 
 # Enable the port using ufw
 sudo ufw allow $DEFAULT_PORT
@@ -66,8 +66,8 @@ sudo systemctl start gost
 
 # Enable Gost service to start on boot
 sudo systemctl enable gost
-#!/bin/bash
 
+# ASCII art for "shi zu ne"
 echo "  ____   _     _        ____  _    _   _  ______ "
 echo " / ___| | |   (_)      / ___|| |  | | | |/ / ___|"
 echo " \___ \ | |    _ _____| |  _ | |  | | | ' /\___ \\"
@@ -79,4 +79,4 @@ echo " "
 echo " "
 
 # Output the generated information
-echo "tạo thành công proxy: $IP_ADDRESS:$DEFAULT_PORT:$DEFAULT_USERNAME:$DEFAULT_PASSWORD"
+echo "Tạo thành công proxy: $IP_ADDRESS:$DEFAULT_PORT:$DEFAULT_USERNAME:$DEFAULT_PASSWORD"
