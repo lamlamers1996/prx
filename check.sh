@@ -1,41 +1,48 @@
 #!/bin/bash
 
-# Kiểm tra xem người dùng đã cung cấp đường dẫn đến tệp proxy.txt chưa
-if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 /path/to/proxy.txt"
-    exit 1
-fi
+# Function to check a single proxy
+check_proxy() {
+    local proxy=$1
+    local ip=$(echo $proxy | cut -d':' -f1)
+    local port=$(echo $proxy | cut -d':' -f2)
+    local user=$(echo $proxy | cut -d':' -f3)
+    local pass=$(echo $proxy | cut -d':' -f4)
 
-# Đường dẫn đến tệp proxy
-proxy_file=$1
-
-# Cấu hình proxy (có thể thay đổi tùy thuộc vào cấu hình của bạn)
-port=6789
-user="admin"  # Thay bằng username của bạn
-pass="adminbang123"  # Thay bằng password của bạn
-
-# Danh sách proxy lỗi
-declare -a failed_proxies
-
-# Kiểm tra từng proxy trong tệp
-while IFS= read -r proxy; do
-    # Sử dụng curl để kiểm tra proxy
-    response=$(curl --socks5 "$user:$pass@$proxy:$port" --max-time 10 -s -o /dev/null -w "%{http_code}" http://www.google.com)
+    # Use curl to check the proxy with a timeout of 2 seconds
+    response=$(curl -s -o /dev/null -w "%{http_code}" --socks5 $ip:$port --proxy-user $user:$pass --max-time 2 http://checkip.amazonaws.com)
 
     if [ "$response" -eq 200 ]; then
-        echo "Proxy $proxy:$port hoạt động"
+        echo "Proxy $proxy is working"
     else
-        echo "Proxy $proxy:$port proxy Không Hoạt Động"
-        failed_proxies+=("$proxy:$port")
+        echo "Proxy $proxy is not working"
+        failed_proxies+=("$proxy")
     fi
-done < "$proxy_file"
+}
 
-# In ra các proxy lỗi
+echo "Enter proxies (format ip:port:user:pass), one per line. End input with an empty line."
+
+# Read proxies from user input
+proxies=()
+while true; do
+    read -r proxy
+    [ -z "$proxy" ] && break
+    proxies+=("$proxy")
+done
+
+# Array to store failed proxies
+failed_proxies=()
+
+# Check each proxy
+for proxy in "${proxies[@]}"; do
+    check_proxy "$proxy"
+done
+
+# Output the failed proxies
 if [ ${#failed_proxies[@]} -ne 0 ]; then
-    echo "danh sách proxy proxy Không Hoạt Động:"
-    for proxy in "${failed_proxies[@]}"; do
-        echo "$proxy"
+    echo "The following proxies failed:"
+    for failed_proxy in "${failed_proxies[@]}"; do
+        echo "$failed_proxy"
     done
 else
-    echo "tất cả proxy hoạt động"
+    echo "All proxies are working"
 fi
