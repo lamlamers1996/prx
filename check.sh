@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# ANSI color codes
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
 # Function to check a single proxy
 check_proxy() {
     local proxy=$1
@@ -12,9 +17,9 @@ check_proxy() {
     response=$(curl -s -o /dev/null -w "%{http_code}" --socks5 $ip:$port --proxy-user $user:$pass --max-time 2 http://checkip.amazonaws.com)
 
     if [ "$response" -eq 200 ]; then
-        echo "Proxy $proxy is working"
+        echo -e "Proxy $proxy ${GREEN}     hoạt động${NC}"
     else
-        echo "Proxy $proxy is not working"
+        echo -e "Proxy $proxy ${RED}       Không hoạt động${NC}"
         failed_proxies+=("$proxy")
     fi
 }
@@ -39,10 +44,10 @@ done
 
 # Output the failed proxies
 if [ ${#failed_proxies[@]} -ne 0 ]; then
-    echo "The following proxies failed:"
+    echo "Danh sách proxy lỗi:"
     for failed_proxy in "${failed_proxies[@]}"; do
         echo "$failed_proxy"
     done
 else
-    echo "All proxies are working"
+    echo "tất cả proxy hoạt động"
 fi
