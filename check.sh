@@ -49,5 +49,5 @@ if [ ${#failed_proxies[@]} -ne 0 ]; then
         echo "$failed_proxy"
     done
 else
-    echo "Tat Ca proxy hoạt động"
+    echo "Tat Ca proxy hoạt động${NC}"
 fi
