@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default values
-DEFAULT_PORT=6789
+DEFAULT_PORT=9999
 DEFAULT_USERNAME="phambang"
 DEFAULT_PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 8)
 
