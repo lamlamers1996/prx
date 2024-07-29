@@ -15,7 +15,7 @@ sudo cp /etc/squid/squid.conf /etc/squid/squid.conf.bak
 # Cấu hình Squid
 echo "Cấu hình Squid..."
 sudo bash -c 'cat <<EOL > /etc/squid/squid.conf
-http_port 6789
+http_port 46996
 acl all src all
 http_access allow all
 EOL'
@@ -28,6 +28,7 @@ sudo systemctl restart squid
 echo "Kích hoạt Squid để khởi động cùng hệ thống..."
 sudo systemctl enable squid
 
+ufw allow 46996
 # Kiểm tra trạng thái dịch vụ Squid
 echo "Kiểm tra trạng thái dịch vụ Squid..."
 sudo systemctl status squid
