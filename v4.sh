@@ -30,7 +30,5 @@ sudo systemctl enable squid
 
 ufw allow 46996
 # Kiểm tra trạng thái dịch vụ Squid
-echo "Kiểm tra trạng thái dịch vụ Squid..."
-sudo systemctl status squid
 
 echo "Hoàn tất cài đặt và cấu hình Squid."
